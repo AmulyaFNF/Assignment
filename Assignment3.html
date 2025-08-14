@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="text" id="text">
+    <button id="btn">Encrypt</button>
+    <div id="data"></div>
+    <script>
+          window.addEventListener("load",function(){
+            btn=document.getElementById("btn");
+             btn.addEventListener("click",function(){
+            text=document.getElementById("text").value;
+            console.log(text);
+            const str="the quick brown fox jumps over the lazy dog";
+            let enc="";
+            let flag=0;
+            const values=str.split(" ");
+            for(i=0;i<text.length;i++){
+                let find=text[i];
+                if(find==" "){
+                    enc=enc+"_"
+                }
+                console.log(btn[i]);
+                flag=0;
+                
+                for(index=0;index<values.length;index++){
+                    let word=values[index]
+                    for(j=0;j<word.length;j++){
+                        if(word[j]==find){
+                            enc=enc+index;
+                            enc=enc+j;
+                            flag=1;
+                            break;
+                        }
+                        if(flag==1)
+                        break;
+                    }
+                }
+            
+        }
+            console.log(enc);
+            const s=document.getElementById(data);
+            data.innerHTML=enc;
+        })
+          })
+    </script>
+</body>
+</html>

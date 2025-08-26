@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validate Me!</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { color: #333; }
+        label { margin-right: 10px; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Validate Me!</h1>
+        <p>
+            UserName (6-8 characters):
+            <input type="text" id="txtName" />
+        </p>
+        <p>
+            Pin:
+            <input type="text" id="txtPin" />
+        </p>
+        <p>
+            States:
+            <select id="DropDownList1">
+                <option value="Karnataka">Karnataka</option>
+                <option value="Andra Pradesh">Andra Pradesh</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Maharastra">Maharastra</option>
+                <option value=""></option>
+            </select>
+        </p>
+        <p>
+            <input type="checkbox" id="txtValid" /> Validate Pin
+        </p>
+        <p>
+            Select Your favourite milk product:
+        </p>
+        <p>
+            <input type="radio" name="Options" id="RadioButton1" value="Butter" /> <label for="RadioButton1">Butter</label>
+            <input type="radio" name="Options" id="RadioButton2" value="Cheese" /> <label for="RadioButton2">Cheese</label>
+            <input type="radio" name="Options" id="RadioButton3" value="Milk" /> <label for="RadioButton3">Milk</label>
+        </p>
+        <p>
+            <button id="txtCheck">Checkform</button>
+        </p>
+        <p>
+            <span id="Label1" class="error"></span>
+        </p>
+    </div>
+
+    <script>
+        
+
+        document.getElementById("txtCheck").onclick = function (e) {
+            e.preventDefault();
+            let message = "";
+            const input = document.getElementById("txtName").value.trim();
+            if (input.length < 6 || input.length > 8) {
+                message += "Invalid Username length. Must be between 6 and 8 characters.";
+            }
+            const pin = document.getElementById("txtPin").value.trim();
+            
+let hasLetter = false;
+let hasDigit = false;
+
+for (let i = 0; i < pin.length; i++) {
+    const c = pin[i];
+    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+        hasLetter = true;
+    }
+    if (c >= '0' && c <= '9') {
+        hasDigit = true;
+    }
+    if (hasLetter && hasDigit) break;
+}
+
+
+            if (!hasLetter || !hasDigit) {
+                if (message) message += " ";
+                message += "Invalid Pin. Must contain at least one letter and one digit.";
+            }
+            document.getElementById("Label1").textContent = message;
+        };
+
+        document.getElementById("txtValid").onchange = function () {
+            if (this.checked) {
+                const pin = document.getElementById("txtPin").value.trim();
+                let hasLetter = false;
+let hasDigit = false;
+
+for (let i = 0; i < pin.length; i++) {
+    const c = pin[i];
+    if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+        hasLetter = true;
+    }
+    if (c >= '0' && c <= '9') {
+        hasDigit = true;
+    }
+    if (hasLetter && hasDigit) break;
+}
+                
+                if (!hasLetter || !hasDigit) {
+                    document.getElementById("Label1").textContent = "Invalid Pin. Must contain at least one letter and one digit.";
+                } else {
+                    document.getElementById("Label1").textContent = "";
+                }
+            } else {
+                document.getElementById("Label1").textContent = "";
+            }
+        };
+    </script>
+</body>
+</html>

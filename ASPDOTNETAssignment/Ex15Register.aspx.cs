@@ -26,14 +26,19 @@ namespace SampleWebFormsApp
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 string query = "SELECT Id,Username,Email,Age FROM Register";
-                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
-                {
-                    DataTable dt=new DataTable();
-                    da.Fill(dt);
-                    gvUsers.DataSource = dt;
-                    gvUsers.DataBind();
-                }
+               using (SqlCommand cmd = new SqlCommand(query, conn))
+               {
+                 conn.Open();
+                 using (SqlDataReader reader = cmd.ExecuteReader())
+                 {
+                  DataTable dt = new DataTable();
+                  dt.Load(reader);
+                  gvUsers.DataSource = dt;
+                   gvUsers.DataBind();
+                 }
+               }
             }
         }
     }
+
 }

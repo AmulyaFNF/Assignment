@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Restaurants</h2>
+
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search food..." />
+  </div>
+
+  <div *ngFor="let restaurant of restaurants" class="mb-4">
+    <div class="card shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">{{ restaurant.name }}</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let food of restaurant.foods | filter:searchTerm" class="list-group-item d-flex justify-content-between align-items-center">
+          <span>{{ food.name }} - ₹{{ food.price }}</span>
+          <button class="btn btn-sm btn-success" (click)="addToCart(food, restaurant.name)">Add to Cart</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a routerLink="/cart" class="btn btn-outline-dark">Go to Cart</a>
+  </div>
+</div>
+

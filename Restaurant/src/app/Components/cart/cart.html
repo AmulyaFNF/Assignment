@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Your Cart</h2>
+
+  <div *ngIf="cartItems.length > 0">
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>Food Name</th>
+          <th>Restaurant</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Order Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cartItems">
+          <td>{{ item.foodName }}</td>
+          <td>{{ item.restaurantName }}</td>
+          <td>₹{{ item.price }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.orderDate | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4 class="mt-3">Total: ₹{{ total }}</h4>
+    <button class="btn btn-primary mt-2" (click)="checkout()">Checkout</button>
+  </div>
+
+  <p *ngIf="cartItems.length === 0" class="text-muted">Your cart is empty.</p>
+</div>

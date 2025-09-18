@@ -1,0 +1,43 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-4">
+            {{ isNewUser ? 'New User Registration' : 'Login' }}
+          </h3>
+
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" [(ngModel)]="username" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="password" />
+          </div>
+
+          <div *ngIf="isNewUser" class="mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" [(ngModel)]="address" />
+          </div>
+
+          <div *ngIf="!isNewUser && address" class="mb-3">
+            <p><strong>Address:</strong> {{ address }}</p>
+            <button class="btn btn-outline-secondary btn-sm" (click)="changeAddressPrompt()">
+              Change Address
+            </button>
+          </div>
+
+          <button class="btn btn-primary w-100 mb-2" (click)="login()">
+            {{ isNewUser ? 'Register' : 'Login' }}
+          </button>
+
+          <button class="btn btn-link w-100" (click)="toggleUserType()">
+            {{ isNewUser ? 'Already have an account?' : 'New user? Register here' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
